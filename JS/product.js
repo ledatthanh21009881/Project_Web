@@ -735,7 +735,7 @@ function renderCart() {
             )
             .join("")
         : `<div>
-        <img id="img-cart" class="header__cart-list--no-cart-img" src="../IMGAGE/no-product.png" alt="">
+        <img id="img-cart" class="header__cart-list--no-cart-img" style="width:190px;" src="../IMGAGE/no-product.png" alt="">
         <div style="margin-top:3px;"><span style="color:red;">Chưa có sản phẩm</span></div>
  </div>`
     }`);

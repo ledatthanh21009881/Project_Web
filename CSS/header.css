@@ -331,7 +331,7 @@ li {
     padding: 12px;
     border-radius: 10px;
     box-shadow: 0 1px 3px #ccc;
-    display: none;
+    display: block;
     cursor: default;
     z-index: 10;
 }
