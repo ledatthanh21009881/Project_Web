@@ -1,4 +1,3 @@
-$(document).ready(function() {
 function renderCart() {
   const carts = JSON.parse(localStorage.getItem("WEB_SHOP_CART")) || [];
   const totalPrice = carts.reduce(
@@ -45,12 +44,7 @@ function renderCart() {
                               </div>
                           </div>
                       </td>
-                      <td data-th="Price"><span style="color:red;">${product.price
-                        .toLocaleString("vi-VN", {
-                          style: "currency",
-                          currency: "VND",
-                        })
-                        .replace(/\./g, ",")}</span>
+                      <td data-th="Price"><span style="color:red;">${product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }).replace(/\./g, ',')}</span>
                       </td>
                       <td data-th="Quantity">
                           <div style="margin-left: 16px;">
@@ -73,9 +67,7 @@ function renderCart() {
           .replace(/\./g, ",")}
     </span>
     </td>
-                    <td><i style="font-size:25px; margin-left:25px;" id="success" class="fa-solid fa-trash xsp" onclick="handleDelete('${
-                      product.id
-                    }')"></i></td>
+                    <td><i style="font-size:25px; margin-left:25px;" id="success" class="fa-solid fa-trash xsp" onclick="handleDelete('${product.id}')"></i></td>
                       
                   </tr>`
                        )
@@ -95,91 +87,89 @@ function renderCart() {
                         .replace(/\./g, ",")}</span>
                       </td>
                       <td>
-                      <button type="button" id="checkoutButton" class="btn btn-primary" data-bs-toggle="modal"
-                      data-bs-target="#exampleModal">
-                      Thanh toán
-                  </button>
-      
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog">
-                          <div class="modal-content">
-                              <div class="modal-header">
-                                  <h3 class="my-3">Thông tin Giao hàng</h3>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                      aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                  <form>
-                                      <div class="mb-3" >
-                                          <label for="exampleInputName" class="form-label"><b>Họ và
-                                                  tên</b></label>
-                                          <input type="text" class="form-control" id="exampleInputName"
-                                              aria-describedby="NameHelp">
-                                              <span class="text-danger" id="errName"></span>
+                          <button type="button" id="checkoutButton" class="btn btn-primary" data-bs-toggle="modal"
+                              data-bs-target="#exampleModal">
+                              Thanh toán
+                          </button>
+              
+                          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                              aria-hidden="true">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h3 class="my-3">Thông tin Giao hàng</h3>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                              aria-label="Close"></button>
                                       </div>
-                                      
-                                      <div class="mb-3">
-                                          <label for="exampleInputNumber1" class="form-label"><b>Số điện
-                                                  thoại</b></label>
-                                          <input type="text" class="form-control" id="exampleInputNumber"
-                                              aria-describedby="NumberHelp">
-                                          <span class="text-danger" id="errSDT"></span> 
+                                      <div class="modal-body">
+                                          <form>
+                                              <div class="mb-3" >
+                                                  <label for="exampleInputName" class="form-label"><b>Họ và
+                                                          tên</b></label>
+                                                  <input type="text" class="form-control" id="exampleInputName"
+                                                      aria-describedby="NameHelp">
+                                              </div>
+                                              
+                                              <div class="mb-3">
+                                                  <label for="exampleInputNumber1" class="form-label"><b>Số điện
+                                                          thoại</b></label>
+                                                  <input type="text" class="form-control" id="exampleInputNumber"
+                                                      aria-describedby="NumberHelp">
+                                              </div>
+                                              <div class="mb-3">
+                                                  <label for="exampleInputEmail1"
+                                                      class="form-label"><b>Email</b></label>
+                                                  <input type="email" class="form-control" id="exampleInputEmail1"
+                                                      aria-describedby="emailHelp">
+                                              </div>
+                                              <div class="mb-3">
+                                                  <label for="exampleInputAddress1" class="form-label"><b>Địa
+                                                          chỉ</b></label>
+                                                  <input type="text" class="form-control" id="exampleInputAddress1">
+                                              </div>
+                                              <div class="mb-3">
+                                                  <label for="exampleFormControlTextarea1" class="form-label"><b>Ghi
+                                                          chú</b></label>
+                                                  <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                      rows="3"></textarea>
+                                              </div>
+              
+                                              <div class="mb-3">
+                                                  <label for="exampleFormControlTextarea1" name="Pay"
+                                                      class="form-label"><b>Hình thức thanh toán</b></label>
+                                                  <label>
+                                                      <input type="radio" name="Pay">
+                                                      <span>Thanh toán khi nhận hàng</span>
+                                                  </label>
+                                                  <label>
+                                                      <input type="radio" name="Pay">
+                                                      <span>Thanh toán qua ngân hàng</span>
+                                                  </label>
+                                              </div>
+                                              <div class="mb-3">
+                                                  <label for="exampleFormControlTextarea1" class="form-label"><b>Tổng
+                                                          số tiền:</b></label>
+                                                  <span id="total-amount-modal"><span style="color:red;">${totalPrice
+                                                    .toLocaleString("vi-VN", {
+                                                      style: "currency",
+                                                      currency: "VND",
+                                                    })
+                                                    .replace(
+                                                      /\./g,
+                                                      ","
+                                                    )}</span></span>
+                                              </div>
+              
+                                              <button type="submit" class="btn btn-primary">Thanh toán</button>
+                                          </form>
                                       </div>
-                                      <div class="mb-3">
-                                          <label for="exampleInputEmail1"
-                                              class="form-label"><b>Email</b></label>
-                                          <input type="email" class="form-control" id="exampleInputEmail1"
-                                              aria-describedby="emailHelp">
-                                          <span class="text-danger" id="errEmail"></span>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger"
+                                              data-bs-dismiss="modal">Close</button>
                                       </div>
-                                      <div class="mb-3">
-                                          <label for="exampleInputAddress1" class="form-label"><b>Địa
-                                                  chỉ</b></label>
-                                          <input type="text" class="form-control" id="exampleInputAddress1">
-                                          <span class="text-danger" id="errAddress"></span>
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="exampleFormControlTextarea1" class="form-label"><b>Ghi
-                                                  chú</b></label>
-                                          <textarea class="form-control" id="exampleFormControlTextarea1"
-                                              rows="3"></textarea>
-                                      </div>
-      
-                                      <div class="mb-3">
-                                          <label for="exampleFormControlTextarea1" name="Pay"
-                                              class="form-label"><b>Hình thức thanh toán</b></label>
-                                          <label>
-                                              <input type="radio" name="Pay">
-                                              <span>Thanh toán khi nhận hàng</span>
-                                              </label>
-                                              <label>
-                                              <input type="radio" name="Pay">
-                                              <span>Thanh toán qua ngân hàng</span>
-                                            </label>
-                                            <span class="text-danger" id="errThanhToan"></span>
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="exampleFormControlTextarea1" class="form-label"><b>Tổng
-                                                  số tiền:</b></label>
-                                          <span id="total-amount-modal"><span style="color:red;">${totalPrice
-                                            .toLocaleString("vi-VN", {
-                                              style: "currency",
-                                              currency: "VND",
-                                            })
-                                            .replace(/\./g, ",")}</span></span>
-                                      </div>
-      
-                                      <button type="button" class="btn btn-primary" id="dathang">Thanh toán</button>
-                                  </form>
-                              </div>
-                              <div class="modal-footer">
-                                  <button type="button" class="btn btn-danger"
-                                      data-bs-dismiss="modal">Close</button>
+                                  </div>
                               </div>
                           </div>
-                      </div>
-                    </div>
                       </td>
               
                   </tr>
@@ -221,21 +211,21 @@ const handleChangeQuantity = (productId, newQuantity) => {
   // const index =
 };
 const handleDelete = (productId) => {
-  const carts = JSON.parse(localStorage.getItem("WEB_SHOP_CART"));
-  const newCarts = carts.filter((product) => product.id !== productId);
-  localStorage.setItem("WEB_SHOP_CART", JSON.stringify(newCarts));
-
-  // Use the my-alert-success class for a success message
-  showAlert("Đã xóa sản phẩm thành công", "my-alert");
-
-  renderCart();
-};
-
-function showAlert(message, className) {
-  // Create a div element for the alert
-  const alertDiv = document.createElement("div");
-  alertDiv.className = className; // Apply the specified class
-  alertDiv.innerHTML = `
+    const carts = JSON.parse(localStorage.getItem("WEB_SHOP_CART"));
+    const newCarts = carts.filter((product) => product.id !== productId);
+    localStorage.setItem("WEB_SHOP_CART", JSON.stringify(newCarts));
+  
+    // Use the my-alert-success class for a success message
+    showAlert("Đã xóa sản phẩm thành công", "my-alert");
+  
+    renderCart();
+  };
+  
+  function showAlert(message, className) {
+    // Create a div element for the alert
+    const alertDiv = document.createElement("div");
+    alertDiv.className = className; // Apply the specified class
+    alertDiv.innerHTML = `
         <i class="fa-solid fa-circle-check"></i>
         <div class="content">
             <div class="title">${message}</div>
@@ -243,130 +233,16 @@ function showAlert(message, className) {
         
         <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
     `;
-  // Get the body element or another suitable container where you want to display the alert
-  const parentElement = document.body;
-  parentElement.appendChild(alertDiv);
+    // Get the body element or another suitable container where you want to display the alert
+    const parentElement = document.body;
+    parentElement.appendChild(alertDiv);
+  
+    // Remove the alert after a certain time (e.g., 3 seconds)
+    setTimeout(() => {
+      alertDiv.remove();
+    }, 3000);
+  }
+  
 
-  // Remove the alert after a certain time (e.g., 3 seconds)
-  setTimeout(() => {
-    alertDiv.remove();
-  }, 3000);
-}
 
-// Validation Form đặt hàng ================================================
-  // func check name
-    // Tên hợp lệ: Nguyen Thanh Phat hoặc (Phat)
-    function checkName() {
-        let name = $('#exampleInputName').val()
-        let nameValid = /^([A-Z][a-z]+\s)*[A-Z][a-z]+$/
-        if(name == '')
-        {
-            $('#errName').text('*Họ tên không được rỗng!')
-            return false
-        }else if(!nameValid.test(name))
-        {
-            $('#errName').text('*Họ tên phải viết hoa chữ cái đầu!')
-            return false
-        }else
-        {
-            $('#errName').text('')
-            return true
-        }
-    }
   
-    $('#exampleInputName').blur(function() {
-        checkName();
-    })
-  
-    // func check email
-    function checkEmail() {
-        let email = $('#exampleInputEmail1').val()
-        let emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
-        if(email == '')
-        {
-            $('#errEmail').text('*Email không được rỗng!')
-            return false
-        }else if(!emailValid.test(email))
-        {
-            $('#errEmail').text('*Email không hợp lệ!')
-            return false
-        }else
-        {
-            $('#errEmail').text('')
-            return true
-        }
-    }
-  
-    $('#exampleInputEmail1').blur(function() {
-        checkEmail();
-    })
-   
-  
-    // func check SDT
-    // SDT hợp lệ: 09123456789
-    function checkSDT() {
-        let sdt = $('#exampleInputNumber').val()
-        let sdtValid = /^(09|07|03)[0-9]{8}$/
-        if(sdt == '')
-        {
-            $('#errSDT').text('*Số điện thoại không được rỗng!')
-            return false
-        }else if(!sdtValid.test(sdt))
-        {
-            $('#errSDT').text('*Số điện thoại phải có 10 ký tự và bắt đàu bằng (09, 07, 03 hoặc 08)!')
-            return false
-        }else
-        {
-            $('#errSDT').text('')
-            return true
-        }
-    }
-    
-    $('#exampleInputNumber').blur(function() {
-        checkSDT();
-    })
-  
-    // func check address
-    function checkAddress() {
-        let address = $('#exampleInputAddress1').val()
-        
-        if(address == '')
-        {
-            $('#errAddress').text('*Địa chỉ không được rỗng!')
-            return false
-        }else
-        {
-            $('#errAddress').text('')
-            return true
-        }
-    }
-  
-    $('#exampleInputAddress1').blur(function() {
-        checkAddress();
-    })
-  
-    $('input[name="Pay"]').change(function() {
-      $('#errThanhToan').text('')     
-    })
-  
-    $('#dathang').click(function() {
-        if(checkAddress() && checkSDT()  && checkEmail() && checkName())
-        {
-          let address = $('#address').val()
-          let sdt = $('#phoneNumber').val()
-          let email = $('#email').val() 
-          let name = $('#name').val()
-          let thanhtoan = $('input[name="Pay"]:checked')
-          if(!thanhtoan.val())
-          {
-            $('#errThanhToan').text('Vui lòng chọn 1 hình thức thanh toán!')     
-          }else
-            alert('Đặt hàng thành công')
-          
-        }
-        else
-            alert('Thông tin đặt hàng không hợp lệ!')
-    })  
-    
-      
-  })
